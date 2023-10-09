@@ -1,4 +1,4 @@
-import {action,originals} from './urls'
+import {action,trending,comedyMovies,horrorMovies,romanceMovies,documentaries,topRated} from './urls'
 import React from 'react' 
 import NavBar from './Components/NavBar/NavBar'
 import './App.css' 
@@ -10,9 +10,12 @@ function App() {
     <div className="App">
       <NavBar/>
       <Banner/>
-      <RowPost url={originals}title='Netflix Originals'/>
+      <RowPost url={trending}title='Trending'/>
       <RowPost url={action} title='Action' isSmall/>
-      <RowPost url={action} title='Action' isSmall/>
+      <RowPost url={comedyMovies} title='Comedy' isSmall/>
+      <RowPost url={horrorMovies} title='Horror' isSmall/>
+      <RowPost url={romanceMovies} title='Romance' isSmall/>
+      <RowPost url={documentaries} title='Documentaries' isSmall/>
     </div>
   );
 }
