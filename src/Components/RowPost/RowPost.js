@@ -34,27 +34,24 @@ function RowPost(props) {
     })
   }
   return (
-    
-      <div className='row'>
-        <h2>{props.title}</h2>
-        <div className='posters'>
-          {movies.map((obj) =>
 
-            <div className="image_wrapper">
-              <img onClick={() => handleMovie(obj.id)} className={props.isSmall ? 'smallPoster' : 'poster'} alt='poster' src={`${imageUrl + obj.backdrop_path}`} />
-              {/* <div> */}
-                <p className='overlay'>{obj.original_title}</p>
-                {/* <div /> */}
+    <div className='row'>
+      <h2>{props.title}</h2>
+      <div className='posters'>
 
-              </div>
-          
+        {movies.map((obj) =>
+          <div >
+            <img onClick={() => handleMovie(obj.id)} className={props.isSmall ? 'smallPoster' : 'poster'} alt='poster' src={`${imageUrl + obj.backdrop_path}`} />
+
+            <p className='title_poster'>{obj.original_title}</p>
+          </div>
+
         )}
+      </div>
+      {urlId && <Youtube opts={opts} videoId={urlId.key} />}
+    </div>
 
-            </div>
-      { urlId && <Youtube opts={opts} videoId={urlId.key} />}
-        </div>
-      
-      )
+  )
 }
 
-      export default RowPost
+export default RowPost
