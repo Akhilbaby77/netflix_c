@@ -16,8 +16,8 @@ function Signup() {
         const password = e.target.password.value;
 
         createUserWithEmailAndPassword(database,email,password).then(data=>{
-            console.log(data,"authData")
-            history('/index')
+            alert("SignUp successful")
+            history('/')
         } ).catch((err)=>{
             alert(err)
         })

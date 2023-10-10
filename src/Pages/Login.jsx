@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function Login() {
+function Login({setIsLoggedIn}) {
     const history = useNavigate()
     
+    
     const goToSignUp = ()=>{
+
         history('/signUp')
     }
 
@@ -20,8 +22,10 @@ function Login() {
 
         signInWithEmailAndPassword(database,email,password).then(data=>{
             console.log(data,"authData")
+            setIsLoggedIn(true)
             history('/index')
         } ).catch((err)=>{
+            setIsLoggedIn(false)
             alert(err)
         })
    }
