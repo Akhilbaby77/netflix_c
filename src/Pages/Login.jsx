@@ -5,7 +5,6 @@ import {signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 
 
-
 function Login({setIsLoggedIn}) {
     const history = useNavigate()
     
