@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Login({setIsLoggedIn}) {
     const history = useNavigate()
-    
+      
     
     const goToSignUp = ()=>{
 

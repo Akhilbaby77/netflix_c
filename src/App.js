@@ -31,13 +31,14 @@ function App() {
           <Route path="/signUp" element={<Signup />} />
           <Route
             path="/"
-            element={
+            element={ 
+              // isLoggedIn ? ( showAnimation ?(<LoginAnimation/>) : (<Navigate to="/index" />) ):(<Login setIsLoggedIn={setIsLoggedIn} />)
               showAnimation ? (
                 <LoginAnimation/>
               ) : isLoggedIn ? (
                 <Navigate to="/index" />
               ) : (
-                <Login setIsLoggedIn={setIsLoggedIn} />
+                <Login setIsLoggedIn={setIsLoggedIn} setShowAnimation ={setShowAnimation} />
               )
             }
           />
