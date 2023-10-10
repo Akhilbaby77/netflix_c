@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react';
+import React, { useState,useEffect } from 'react';
 import './login.css';  
 import {database} from '../firebase.js';
 import {signInWithEmailAndPassword} from 'firebase/auth'
@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 function Login({setIsLoggedIn}) {
     const history = useNavigate()
-      
     
     const goToSignUp = ()=>{
 
@@ -33,7 +32,7 @@ function Login({setIsLoggedIn}) {
        
             <div className="sign-in">
             <form className="sign-in-container" onSubmit={(e)=>handleSubmit(e)}>
-                <h1>Sign In</h1>
+                <h1>Log In</h1>
                 <input
                     type="email"
                     placeholder="Email"

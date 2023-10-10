@@ -3,11 +3,24 @@ import {action,trending,comedyMovies,horrorMovies,romanceMovies,documentaries,up
 import NavBar from '../Components/NavBar/NavBar'
 import Banner from '../Components/Banner/Banner'
 import RowPost from '../Components/RowPost/RowPost'
+import IndexAnimation from '../Components/IndexAnimation/IndexAnimation'
 
-function Home({setIsLoggedIn}) {
+function Home({setIsLoggedIn,showIndexAnimation,setShowIndexAnimation}) {
+  
+  useEffect(() => {
+    // Simulate a delay to show the animation for a few seconds
+    const animationTimeout = setTimeout(() => {
+      setShowIndexAnimation(false); // Hide the animation after the delay
+    }, 4000); // Adjust the delay time as needed
+
+    return () => clearTimeout(animationTimeout);
+  }, []);
   
 
-  return (  
+  return (
+    showIndexAnimation ? (
+      <IndexAnimation/>
+    ):(
     <div className="App" id='App'>
       <NavBar setIsLoggedIn={setIsLoggedIn}/>
       <Banner/>
@@ -18,7 +31,7 @@ function Home({setIsLoggedIn}) {
       <RowPost url={horrorMovies} title='Horror' isSmall/>
       <RowPost url={romanceMovies} title='Romance' isSmall/>
       <RowPost url={documentaries} title='Documentaries' isSmall/>
-    </div>
+    </div>)
   )
 }
 

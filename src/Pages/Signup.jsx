@@ -46,7 +46,7 @@ function Signup() {
                     Sign Up
                 </button>
                 <div className="already-member">
-                    <span>Already a member? <a href="" onClick={goToLogIn} >Sign in now.</a></span>
+                    <span>Already a member? <a href="" onClick={goToLogIn} >Log in now.</a></span>
                 </div>
             </form>
         </div>

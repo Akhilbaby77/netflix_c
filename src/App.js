@@ -5,12 +5,14 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginAnimation from './Components/LoginAnimation/LoginAnimation';
+import IndexAnimation from './Components/IndexAnimation/IndexAnimation';
 
 
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAnimation, setShowAnimation] = useState(true);
+  const [showIndexAnimation, setShowIndexAnimation] = useState(true);
 
   useEffect(() => {
     // Simulate a delay to show the animation for a few seconds
@@ -20,9 +22,11 @@ function App() {
 
     return () => clearTimeout(animationTimeout);
   }, []);
+
   const isAuthenticated = () => {
-    return isLoggedIn; // Replace with your authentication logic.
+    return isLoggedIn; 
   };
+ 
 
   return (
     <Router>
@@ -44,12 +48,16 @@ function App() {
           />
           <Route
             path="/index"
-            element={isAuthenticated() ? <Home setIsLoggedIn={setIsLoggedIn} /> : <Navigate to="/" />}
+            element={
+              isAuthenticated() ? (
+               <Home setIsLoggedIn={setIsLoggedIn} showIndexAnimation={showIndexAnimation} setShowIndexAnimation={setShowIndexAnimation}/>
+               ) : (
+               <Navigate to="/" />)
+            }
           />
         </Routes>
       </div>
     </Router>
-
   );
 }
 
