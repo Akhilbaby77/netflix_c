@@ -42,7 +42,6 @@ function RowPost(props) {
         {movies.map((obj) =>
           <div >
             <img onClick={() => handleMovie(obj.id)} className={props.isSmall ? 'smallPoster' : 'poster'} alt='poster' src={`${imageUrl + obj.backdrop_path}`} />
-
             <p className='title_poster'>{obj.original_title}</p>
           </div>
 

@@ -1,5 +1,4 @@
-
-.navbar{
+.navbar {
     position: fixed;
     top: 0;
     width: 100%;
@@ -12,16 +11,61 @@
 
 
 
-.logo{
-    
+.logo {
+
     position: fixed;
     left: 20px;
     width: 80px;
 }
 
-.avatar{
-  
+.avatar {
+
     position: fixed;
     right: 20px;
     width: 30px;
+    border: transparent;
+    cursor: pointer;
+}
+
+.show {
+    display: flex;
+    position: absolute;
+    background-color: #00000000;
+    min-width: 100px;
+    z-index: 1;
+    margin-top: 40px;
+    right: 0%;
+    margin-right: 5%;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.notShow {
+    display: none;
+    position: absolute;
+    background-color: #00000000;
+    min-width: 100px;
+    z-index: 1;
+    margin-top: 40px;
+    right: 0%;
+    margin-right: 5%;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.notShowBtn{
+    background-color: transparent;
+    padding: 5px 10px;
+    margin: 15% 0%;
+    border: 1px solid white;
+    color: white;
+    border-radius: 20px;
+    background-color: black;
 }
