@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import './signUp.css';
 import {database} from '../firebase.js';
 import {createUserWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
-function Signup() {
+import {db} from '../firebase'
+import { collection, addDoc } from "firebase/firestore"; 
+function Signup({setUsers}) {
     const history = useNavigate()
-
    const goToLogIn = ()=>{
     history('/')
    }
@@ -14,18 +15,30 @@ function Signup() {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const name = e.target.Name.value;
 
-        createUserWithEmailAndPassword(database,email,password).then(data=>{
+        createUserWithEmailAndPassword(database,email,password,name).then(data=>{
+            addDoc(collection(db, "user-details"), {
+                name: name,
+                email: email
+              });
             alert("SignUp successful")
             history('/')
         } ).catch((err)=>{
             alert(err)
         })
+
+        
    }
     return (
         <div className="sign-up">
             <form className="sign-up-container" onSubmit={(e)=>handleSubmit(e)}>
                 <h1>Sign Up</h1>
+                <input
+                    type="text"
+                    placeholder="Name"
+                    name='Name'
+                />
                 <input
                     type="email"
                     placeholder="email"

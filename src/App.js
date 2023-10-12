@@ -13,12 +13,14 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showAnimation, setShowAnimation] = useState(true);
   const [showIndexAnimation, setShowIndexAnimation] = useState(true);
+  const [users,setUsers] = useState([])
+  const [email,setEmail] = useState('')
 
   useEffect(() => {
     // Simulate a delay to show the animation for a few seconds
     const animationTimeout = setTimeout(() => {
       setShowAnimation(false); // Hide the animation after the delay
-    }, 3000); // Adjust the delay time as needed
+    }, 3000); 
 
     return () => clearTimeout(animationTimeout);
   }, []);
@@ -32,7 +34,8 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/signUp" element={<Signup />} />
+          <Route path="/signUp" element={<Signup setUsers={setUsers
+          }  />} />
           <Route
             path="/"
             element={ 
@@ -42,7 +45,7 @@ function App() {
               ) : isLoggedIn ? (
                 <Navigate to="/index" />
               ) : (
-                <Login setIsLoggedIn={setIsLoggedIn} setShowAnimation ={setShowAnimation} />
+                <Login setIsLoggedIn={setIsLoggedIn} setShowAnimation ={setShowAnimation} setEmail={setEmail} />
               )
             }
           />
@@ -50,7 +53,12 @@ function App() {
             path="/index"
             element={
               isAuthenticated() ? (
-               <Home setIsLoggedIn={setIsLoggedIn} showIndexAnimation={showIndexAnimation} setShowIndexAnimation={setShowIndexAnimation}/>
+               <Home setIsLoggedIn={setIsLoggedIn} 
+               showIndexAnimation={showIndexAnimation} 
+               setShowIndexAnimation={setShowIndexAnimation}
+                users = {users} 
+               setUsers={setUsers}
+               email={email}/>
                ) : (
                <Navigate to="/" />)
             }

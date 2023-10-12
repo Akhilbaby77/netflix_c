@@ -4,14 +4,26 @@ import NavBar from '../Components/NavBar/NavBar'
 import Banner from '../Components/Banner/Banner'
 import RowPost from '../Components/RowPost/RowPost'
 import IndexAnimation from '../Components/IndexAnimation/IndexAnimation'
+import {db} from '../firebase'
+import {collection,getDocs} from 'firebase/firestore'
 
-function Home({setIsLoggedIn,showIndexAnimation,setShowIndexAnimation}) {
+function Home({setIsLoggedIn,showIndexAnimation,setShowIndexAnimation,setUsers,users,email}) {
+  const userCollectionRef = collection(db,"user-details")
   
+  useEffect(()=>{
+    const getUser = async ()=>{
+      const data = await getDocs(userCollectionRef)
+      setUsers(data.docs.map((doc) => ({...doc.data(),id: doc.id})))
+      console.log("is this empty? ",users);
+    };
+    getUser()
+  },[])
+
   useEffect(() => {
     // Simulate a delay to show the animation for a few seconds
     const animationTimeout = setTimeout(() => {
       setShowIndexAnimation(false); // Hide the animation after the delay
-    }, 4000); // Adjust the delay time as needed
+    }, 4000); 
 
     return () => clearTimeout(animationTimeout);
   }, []);
@@ -22,7 +34,7 @@ function Home({setIsLoggedIn,showIndexAnimation,setShowIndexAnimation}) {
       <IndexAnimation/>
     ):(
     <div className="App" id='App'>
-      <NavBar setIsLoggedIn={setIsLoggedIn}/>
+      <NavBar setIsLoggedIn={setIsLoggedIn} setUsers={setUsers} email={email}/>
       <Banner/>
       <RowPost url={trending}title='Trending Now'/>
       {/* <RowPost url={upcoming}title='Upcoming'/> */}

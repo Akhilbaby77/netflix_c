@@ -5,7 +5,7 @@ import {signInWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 
 
-function Login({setIsLoggedIn}) {
+function Login({setIsLoggedIn,setEmail}) {
     const history = useNavigate()
     
     const goToSignUp = ()=>{
@@ -21,6 +21,7 @@ function Login({setIsLoggedIn}) {
         signInWithEmailAndPassword(database,email,password).then(data=>{
             console.log(data,"authData")
             setIsLoggedIn(true)
+            setEmail(email)
             history('/index')
         } ).catch((err)=>{
             setIsLoggedIn(false)
@@ -46,7 +47,7 @@ function Login({setIsLoggedIn}) {
                     
                 />
                 <button className="sign-in-button" >
-                    Sign In
+                    Log In
                 </button>
                 
                 <div className="new-to-netflix">
